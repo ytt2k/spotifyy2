@@ -14,7 +14,7 @@ dotenv.config();
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID; 
 
 const Title = () => {
-  return <h1><a href="https://spotifyy2.netlify.app/">Spotify app</a></h1>;
+  return <h1><a id="title" href="https://spotifyy2.netlify.app/">Spotify app</a></h1>;
 };
 
 const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;

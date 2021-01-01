@@ -11,7 +11,7 @@ import {
 import axios from "../axios";
 import dotenv from "dotenv";
 dotenv.config();
-const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
+const CLIENT_ID = process.env.REACT_APP_CLIENT_ID; 
 
 const Title = () => {
   return <h1>Spotify app</h1>;

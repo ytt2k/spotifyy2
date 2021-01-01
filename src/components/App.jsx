@@ -9,9 +9,6 @@ import {
   UserPlaylists
 } from "react-spotify-api";
 import axios from "../axios";
-import dotenv from "dotenv";
-dotenv.config();
-const CLIENT_ID = process.env.REACT_APP_CLIENT_ID; 
 
 const Title = () => {
   return <h1><a id="title" href="https://spotifyy2.netlify.app/">Spotify app</a></h1>;
@@ -187,7 +184,7 @@ const App = () => {
         <SpotifyAuth
           redirectUri="http://spotifyy2.netlify.app/"
           noLogo={true}
-          clientID={CLIENT_ID}
+          clientID={process.env.REACT_APP_CLIENT_ID}
           scopes={[
             Scopes.userReadPrivate,
             "user-read-email",

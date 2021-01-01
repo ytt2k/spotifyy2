@@ -1,0 +1,204 @@
+import React, { useState } from "react";
+import { SpotifyAuth, Scopes } from "react-spotify-auth";
+import Cookies from "js-cookie";
+import {
+  SpotifyApiContext,
+  SpotifyApiAxiosContext,
+  UserTop,
+  User,
+  UserPlaylists
+} from "react-spotify-api";
+import axios from "../axios";
+import dotenv from "dotenv";
+dotenv.config();
+const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
+
+const Title = () => {
+  return <h1>Spotify app</h1>;
+};
+
+const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;
+
+const App = () => {
+  const token = Cookies.get("spotifyAuthToken");
+  const [showTopTracks, setShowTopTracks] = useState(false);
+  const [showTopArtists, setShowTopArtists] = useState(false);
+  const [showPlaylists, setShowPlaylists] = useState(false);
+
+  const showTopTracksHandler = () => {
+    setShowTopTracks((prev) => !prev);
+  };
+
+  const showTopArtistsHandler = () => {
+    setShowTopArtists((prev) => !prev);
+  };
+
+  const showPlaylistsHandler = () => {
+    setShowPlaylists((prev) => !prev);
+  };
+
+  return (
+    <div className="container">
+      <Title />
+      {token ? (
+        <SpotifyApiAxiosContext.Provider value={axios}>
+          <SpotifyApiContext.Provider value={token} >
+            <User>
+              {({ data, loading, error }) =>
+                data ? (
+                  <div>
+                    <div className="userInfo">
+                      <img
+                        className="profileImg"
+                        src={data.images[0].url}
+                        alt="profileImage"
+                      />
+                      <h3>
+                        name: <p>{data.display_name}</p>
+                      </h3>
+                      <h3>
+                        country: <p>{data.country}</p>
+                      </h3>
+                      <h3>
+                        subscription level: <p>{data.product}</p>
+                      </h3>
+                    </div>
+                  </div>
+                ) : null
+              }
+            </User>
+            <Button
+              onClick={showTopTracksHandler}
+              text="show my top 10 tracks"
+            />
+            {showTopTracks ? (
+              <UserTop type="tracks" options={{ limit: 10 }}>
+                {({ data, loading, error }) =>
+                  data ? (
+                    <div>
+                      <ul>
+                        {data.items.map((item) => {
+                          return (
+                            <div className="tracks" key={item.id}>
+                              <div className="track">
+                                <img
+                                  className="trackImg"
+                                  src={item.album.images[0].url}
+                                  alt="trackImage"
+                                />
+                                <li>
+                                  <h3>{item.name}</h3>
+                                </li>
+                                <p>{item.artists[0].name}</p>
+                                <a
+                                  href={item.external_urls.spotify}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  open is spotify
+                                </a>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  ) : null
+                }
+              </UserTop>
+            ) : null}
+            <Button
+              onClick={showTopArtistsHandler}
+              text="show my top 10 artists"
+            />
+            {showTopArtists ? (
+              <UserTop
+                type="artists"
+                options={{ limit: 10, time_range: "short_term" }}
+              >
+                {({ data, loading, error }) =>
+                  data ? (
+                    <div>
+                      <ul>
+                        {data.items.map((item) => {
+                          return (
+                            <div className="artists" key={item.id}>
+                              <div className="artist">
+                                <img
+                                  className="artistImg"
+                                  src={item.images[0].url}
+                                  alt="artistImage"
+                                />
+                                <li>
+                                  <h3>{item.name}</h3>
+                                  <a
+                                    href={item.external_urls.spotify}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                  >
+                                    open in spotify
+                                  </a>
+                                </li>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  ) : null
+                }
+              </UserTop>
+            ) : null}
+            <Button onClick={showPlaylistsHandler} text="show my playlists" />
+            {showPlaylists ? (
+              <UserPlaylists>
+                {({ data, loading, error }) =>
+                  data ? (
+                    <div>
+                      <ul>
+                        {data.items.map((item) => {
+                          return (
+                            <div className="playlists" key={item.id}>
+                              <div className="playlist">
+                                <li>
+                                  {item.name}
+                                  <p>{item.tracks.total} tracks</p>
+                                  <a
+                                    href={item.external_urls.spotify}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                  >
+                                    open in spotify
+                                  </a>
+                                </li>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  ) : null
+                }
+              </UserPlaylists>
+            ) : null}
+          </SpotifyApiContext.Provider>
+        </SpotifyApiAxiosContext.Provider>
+      ) : (
+        <SpotifyAuth
+          redirectUri="http://spotifyy2.netlify.app/"
+          noLogo={true}
+          clientID={CLIENT_ID}
+          scopes={[
+            Scopes.userReadPrivate,
+            "user-read-email",
+            "user-read-recently-played",
+            "user-top-read",
+            "playlist-read-private"
+          ]}
+        />
+      )}
+    </div>
+  );
+};
+
+export default App;

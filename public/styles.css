@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  /* height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  color: #1ed760;
+}
+
+button {
+  font-family: "Poppins", sans-serif;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  margin: 20px;
+  border: 2px solid transparent; /* 👈 needed so the text won't move down on hover */
+  cursor: pointer;
+  display: inline-block;
+  outline: none; /* 👈 removes black border from button */
+}
+
+h2 {
+  color: #1cb351;
+}
+
+input {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 2px solid black;
+  font-family: "Poppins", sans-serif;
+  margin: 2em;
+}
+
+input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+h3 {
+  font-size: 1em;
+}
+
+.profileImg {
+  width: 10%;
+  height: 10%;
+}
+
+.trackImg, .artistImg {
+  object-fit: cover;
+  object-position: center; /* Center the image within the element */
+  height: 150px;
+  width: 150px;
+}
+
+ul {
+  list-style: none;
+}
+
+.tracks, .artists, .playlists {
+  display: inline-block;
+  display: -moz-inline-box;
+  *display: inline; /* For IE7 */
+  zoom: 1; /* Trigger hasLayout */
+  width: 33%;
+  text-align: center;
+}
+
+.userInfo {
+  display: flex;
+  /* flex-wrap: wrap; */
+  display: -moz-inline-box;
+  *display: inline; /* For IE7 */
+  zoom: 1; /* Trigger hasLayout */
+  text-align: center;
+  margin: 2em;
+  justify-content: center;
+}
+
+.userInfo > h3 {
+  margin: 1em;
+}
+
+.track, .artist {
+  margin: 0.5em;
+}
+
+.playlist {
+  margin: 1em;
+}
+
+p {
+  color: #f17806;
+  font-size: 0.8em;
+  text-decoration: none;
+}
+
+a {
+  color: rgba(128, 128, 128, 0.8);
+  font-size: 0.8em;
+  text-decoration: none;
+}

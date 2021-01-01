@@ -113,3 +113,16 @@ a {
   font-size: 0.8em;
   text-decoration: none;
 }
+
+@media only screen 
+    and (width : 375px) 
+    and (height : 635px)
+    and (orientation : portrait)  
+    and (-webkit-device-pixel-ratio : 3) {
+      .trackImg, .artistImg {
+        object-fit: cover;
+        object-position: center; /* Center the image within the element */
+        height: 50px;
+        width: 50px;
+      }
+    }

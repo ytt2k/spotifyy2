@@ -46,7 +46,7 @@ const handleLogOut = (e) => {
   e.preventDefault();
   Cookies.remove("spotifyAuthToken", {
     path: "/",
-    domain: "spotifyy2.netlify.app"
+    domain: ".spotifyy2.netlify.app"
   });
 };
 

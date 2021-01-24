@@ -1,8 +1,7 @@
-# Spotify app
-:notes: check your top 10 tracks
-\
-:notes: check your top 10 artists
-\
-:notes: see a list of your playlists
-\
+# My Spotify Info app
+* check your top 10 tracks
+* check your top 10 artists
+
+* see a list of your playlists
+
 ![](spotifyy2.gif)

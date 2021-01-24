@@ -23,6 +23,10 @@ const Title = () => {
 
 const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;
 
+const LogOutButton = () => {
+  return <button>Logout</button>;
+};
+
 const Description = () => {
   return (
     <div>
@@ -36,6 +40,11 @@ const Description = () => {
       </ul>
     </div>
   );
+};
+
+const handleLogOut = (e) => {
+  e.preventDefault();
+  Cookies.remove("spotifyAuthToken");
 };
 
 const App = () => {
@@ -59,6 +68,7 @@ const App = () => {
   return (
     <div className="container">
       <Title />
+      <LogOutButton onClick={handleLogOut} />
       {token ? (
         <SpotifyApiAxiosContext.Provider value={axios}>
           <SpotifyApiContext.Provider value={token}>
@@ -81,6 +91,7 @@ const App = () => {
                       <h3>
                         Subscription level: <p>{data.product}</p>
                       </h3>
+                      <LogOutButton onClick={handleLogOut} />
                     </div>
                   </div>
                 ) : null

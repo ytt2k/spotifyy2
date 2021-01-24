@@ -44,7 +44,10 @@ const Description = () => {
 
 const handleLogOut = (e) => {
   e.preventDefault();
-  Cookies.remove("spotifyAuthToken");
+  Cookies.remove("spotifyAuthToken", {
+    path: "",
+    domain: "spotifyy2.netlify.app"
+  });
 };
 
 const App = () => {
@@ -68,7 +71,6 @@ const App = () => {
   return (
     <div className="container">
       <Title />
-      <LogOutButton onClick={handleLogOut} />
       {token ? (
         <SpotifyApiAxiosContext.Provider value={axios}>
           <SpotifyApiContext.Provider value={token}>

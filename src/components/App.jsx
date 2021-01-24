@@ -187,7 +187,7 @@ const App = () => {
                                     target="_blank"
                                     rel="noreferrer"
                                   >
-                                    open in spotify
+                                    Open in spotify
                                   </a>
                                 </li>
                               </div>

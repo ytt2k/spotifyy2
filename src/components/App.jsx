@@ -24,7 +24,7 @@ const Title = () => {
 const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;
 
 const LogOutButton = () => {
-  return <button>Logout</button>;
+  return <button onClick={handleLogOut}>Logout</button>;
 };
 
 const Description = () => {
@@ -93,7 +93,7 @@ const App = () => {
                       <h3>
                         Subscription level: <p>{data.product}</p>
                       </h3>
-                      <LogOutButton onClick={handleLogOut} />
+                      <LogOutButton />
                     </div>
                   </div>
                 ) : null

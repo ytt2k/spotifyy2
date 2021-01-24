@@ -59,7 +59,6 @@ const App = () => {
   return (
     <div className="container">
       <Title />
-      <Description />
       {token ? (
         <SpotifyApiAxiosContext.Provider value={axios}>
           <SpotifyApiContext.Provider value={token}>
@@ -204,18 +203,21 @@ const App = () => {
           </SpotifyApiContext.Provider>
         </SpotifyApiAxiosContext.Provider>
       ) : (
-        <SpotifyAuth
-          redirectUri="http://spotifyy2.netlify.app/"
-          noLogo={true}
-          clientID={process.env.REACT_APP_CLIENT_ID}
-          scopes={[
-            Scopes.userReadPrivate,
-            "user-read-email",
-            "user-read-recently-played",
-            "user-top-read",
-            "playlist-read-private"
-          ]}
-        />
+        <div>
+          <Description />
+          <SpotifyAuth
+            redirectUri="http://spotifyy2.netlify.app/"
+            noLogo={true}
+            clientID={process.env.REACT_APP_CLIENT_ID}
+            scopes={[
+              Scopes.userReadPrivate,
+              "user-read-email",
+              "user-read-recently-played",
+              "user-top-read",
+              "playlist-read-private"
+            ]}
+          />
+        </div>
       )}
     </div>
   );

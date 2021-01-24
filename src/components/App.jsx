@@ -23,10 +23,6 @@ const Title = () => {
 
 const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;
 
-const LogOutButton = () => {
-  return <button onClick={handleLogOut}>Logout</button>;
-};
-
 const Description = () => {
   return (
     <div>
@@ -40,14 +36,6 @@ const Description = () => {
       </ul>
     </div>
   );
-};
-
-const handleLogOut = (e) => {
-  e.preventDefault();
-  Cookies.remove("spotifyAuthToken", {
-    path: "/",
-    domain: ".spotifyy2.netlify.app"
-  });
 };
 
 const App = () => {
@@ -93,7 +81,6 @@ const App = () => {
                       <h3>
                         Subscription level: <p>{data.product}</p>
                       </h3>
-                      <LogOutButton />
                     </div>
                   </div>
                 ) : null

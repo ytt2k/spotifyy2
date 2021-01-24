@@ -1,4 +1,4 @@
-# Spotify app
+# My Spotify Info app
 :notes: check your top 10 tracks
 \
 :notes: check your top 10 artists

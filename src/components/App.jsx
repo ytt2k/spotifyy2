@@ -15,7 +15,7 @@ const Title = () => {
   return (
     <h1>
       <a id="title" href="https://spotifyy2.netlify.app/">
-        My Spotify info app
+        My Spotify Info app
       </a>
     </h1>
   );

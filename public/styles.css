@@ -11,7 +11,6 @@ body {
 }
 
 .container {
-  /* height: 100vh; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -22,15 +21,24 @@ body {
   color: #1ed760;
 }
 
+h1 {
+  margin: 1em;
+}
+
+ul {
+  list-style: none;
+  margin: 2em;
+}
+
 button {
   font-family: "Poppins", sans-serif;
   padding: 0.5rem;
   border-radius: 0.5rem;
   margin: 20px;
-  border: 2px solid transparent; /* 👈 needed so the text won't move down on hover */
+  border: 2px solid transparent;
   cursor: pointer;
   display: inline-block;
-  outline: none; /* 👈 removes black border from button */
+  outline: none;
 }
 
 h2 {
@@ -59,9 +67,10 @@ h3 {
   height: 10%;
 }
 
-.trackImg, .artistImg {
+.trackImg,
+.artistImg {
   object-fit: cover;
-  object-position: center; /* Center the image within the element */
+  object-position: center;
   height: 150px;
   width: 150px;
 }
@@ -70,7 +79,9 @@ ul {
   list-style: none;
 }
 
-.tracks, .artists, .playlists {
+.tracks,
+.artists,
+.playlists {
   display: inline-block;
   display: -moz-inline-box;
   *display: inline; /* For IE7 */
@@ -81,7 +92,6 @@ ul {
 
 .userInfo {
   display: flex;
-  /* flex-wrap: wrap; */
   display: -moz-inline-box;
   *display: inline; /* For IE7 */
   zoom: 1; /* Trigger hasLayout */
@@ -94,7 +104,8 @@ ul {
   margin: 1em;
 }
 
-.track, .artist {
+.track,
+.artist {
   margin: 0.5em;
 }
 
@@ -109,18 +120,15 @@ p {
 }
 
 a {
-  color: rgba(128, 128, 128, 0.8);
+  color: #808080cc;
   font-size: 0.8em;
   text-decoration: none;
 }
 
-@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 480px)
-  and (-webkit-min-device-pixel-ratio: 3)
-  and (orientation: portrait) {
-    .trackImg, .artistImg {
-      height: 50px;
-      width: 50px;
-    }
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
+  .trackImg,
+  .artistImg {
+    height: 50px;
+    width: 50px;
+  }
 }

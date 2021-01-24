@@ -9,12 +9,34 @@ import {
   UserPlaylists
 } from "react-spotify-api";
 import axios from "../axios";
+import { MdLibraryMusic } from "react-icons/md";
 
 const Title = () => {
-  return <h1><a id="title" href="https://spotifyy2.netlify.app/">Spotify app</a></h1>;
+  return (
+    <h1>
+      <a id="title" href="https://spotifyy2.netlify.app/">
+        My Spotify info app
+      </a>
+    </h1>
+  );
 };
 
 const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;
+
+const Description = () => {
+  return (
+    <div>
+      <h3>
+        <MdLibraryMusic style={{ fontSize: 30 }} /> Get a list of your:
+      </h3>
+      <ul>
+        <li>Top 10 tracks</li>
+        <li>Top 10 artists</li>
+        <li>Playlists</li>
+      </ul>
+    </div>
+  );
+};
 
 const App = () => {
   const token = Cookies.get("spotifyAuthToken");
@@ -37,9 +59,10 @@ const App = () => {
   return (
     <div className="container">
       <Title />
+      <Description />
       {token ? (
         <SpotifyApiAxiosContext.Provider value={axios}>
-          <SpotifyApiContext.Provider value={token} >
+          <SpotifyApiContext.Provider value={token}>
             <User>
               {({ data, loading, error }) =>
                 data ? (
@@ -51,13 +74,13 @@ const App = () => {
                         alt="profileImage"
                       />
                       <h3>
-                        name: <p>{data.display_name}</p>
+                        Name: <p>{data.display_name}</p>
                       </h3>
                       <h3>
-                        country: <p>{data.country}</p>
+                        Country: <p>{data.country}</p>
                       </h3>
                       <h3>
-                        subscription level: <p>{data.product}</p>
+                        Subscription level: <p>{data.product}</p>
                       </h3>
                     </div>
                   </div>
@@ -66,7 +89,7 @@ const App = () => {
             </User>
             <Button
               onClick={showTopTracksHandler}
-              text="show my top 10 tracks"
+              text="Show my top 10 tracks"
             />
             {showTopTracks ? (
               <UserTop type="tracks" options={{ limit: 10 }}>
@@ -92,7 +115,7 @@ const App = () => {
                                   target="_blank"
                                   rel="noreferrer"
                                 >
-                                  open is spotify
+                                  Open is spotify
                                 </a>
                               </div>
                             </div>
@@ -106,7 +129,7 @@ const App = () => {
             ) : null}
             <Button
               onClick={showTopArtistsHandler}
-              text="show my top 10 artists"
+              text="Show my top 10 artists"
             />
             {showTopArtists ? (
               <UserTop
@@ -133,7 +156,7 @@ const App = () => {
                                     target="_blank"
                                     rel="noreferrer"
                                   >
-                                    open in spotify
+                                    Open in spotify
                                   </a>
                                 </li>
                               </div>
@@ -146,7 +169,7 @@ const App = () => {
                 }
               </UserTop>
             ) : null}
-            <Button onClick={showPlaylistsHandler} text="show my playlists" />
+            <Button onClick={showPlaylistsHandler} text="Show my playlists" />
             {showPlaylists ? (
               <UserPlaylists>
                 {({ data, loading, error }) =>
